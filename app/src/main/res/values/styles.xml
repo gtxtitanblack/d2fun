@@ -1,0 +1,68 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/light_blue</item>
+        <item name="colorPrimaryDark">@color/light_blue</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+
+    <style name="ClubToolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="contentInsetStart">0dp</item>
+    </style>
+
+    <style name="AppTheme" parent="AppBaseTheme">
+        //.....
+        <item name="toolbarStyle">@style/ClubToolbar</item>
+    </style>
+
+    <style name="AppIcoTheme">
+        <item name="android:clickable">true</item>
+        <item name="android:textSize">50px</item>
+        <item name="android:drawablePadding">20px</item>
+        <item name="android:textColor">@color/light_blue</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_margin">10px</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="CustomDialog" parent="Base.Theme.AppCompat.Light.Dialog">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">?attr/colorAccent</item>
+        <item name="tabIndicatorHeight">0dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">12dp</item>
+    </style>
+
+
+    <!-- 自定义loading dialog -->
+    <style name="AppLadingDailog" parent="@android:style/Theme.Material.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <!--自定义提示信息-->
+    <style name="AppMsgdialog" parent="@android:style/Theme.Material.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+
+</resources>
