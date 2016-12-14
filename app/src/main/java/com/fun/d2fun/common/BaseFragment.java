@@ -2,6 +2,7 @@ package com.fun.d2fun.common;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import com.fun.d2fun.util.DialogUtil;
 import com.fun.d2fun.view.BaseView;
 
+import java.util.LinkedHashMap;
+
 import butterknife.ButterKnife;
 
 /**
@@ -20,12 +23,15 @@ import butterknife.ButterKnife;
 
 public abstract class BaseFragment<V extends BaseView, T extends BasePersenter<V>> extends Fragment {
     public Context context;
+    public Resources res;
     public AppApplication mAppApplication;
     public View mLayoutView;
     public T presenter;
     //在基类中初始化Dialog
     public Dialog mLoading;
     private BaseActivity mBaseActivity;
+    public LinkedHashMap<String, Object> mParmMap = new LinkedHashMap<>();
+
 
     public BaseFragment() {
         super();
@@ -40,6 +46,7 @@ public abstract class BaseFragment<V extends BaseView, T extends BasePersenter<V
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = getActivity();
+        res = context.getResources();
         mAppApplication = AppApplication.getInstance();
         /**从给定的context中获得LayoutInflater*/
 //        mInflater = LayoutInflater.from(getActivity());

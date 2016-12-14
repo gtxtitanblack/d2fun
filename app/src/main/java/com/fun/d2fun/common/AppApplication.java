@@ -34,6 +34,7 @@ public class AppApplication extends MultiDexApplication {
     private RefWatcher refWatcher;
     private Gson mGson;
 
+
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);

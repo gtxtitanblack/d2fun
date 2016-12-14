@@ -12,4 +12,5 @@ public class ConstantParms {
 
     public static final String steamKey = "D649FC0BE7EC5D0B4414FB996D2AC01B";
     public static final String parmLanguage = "zh_cn";
+
 }

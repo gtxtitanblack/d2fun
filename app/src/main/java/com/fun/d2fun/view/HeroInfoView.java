@@ -7,5 +7,5 @@ import com.fun.d2fun.entity.HeroSimpleInfo;
  */
 
 public interface HeroInfoView extends BaseView {
-    void getTestInfo(HeroSimpleInfo.ResultEntity.HeroesEntity heroesEntity);
+    void getHeroInfo(HeroSimpleInfo.ResultEntity resultEntity);
 }
