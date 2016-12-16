@@ -26,6 +26,8 @@ public abstract class BasePersenter<T extends BaseView> {
         }
     }
 
+
+
     public boolean isEmpty(String string) {
         if (StringUtil.checkEmpty(string)) {
             mView.showError("数据为空");

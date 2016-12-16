@@ -5,6 +5,7 @@ import com.fun.d2fun.entity.HeroSimpleInfo;
 import com.fun.d2fun.service.HeroService;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import io.reactivex.Flowable;
 
@@ -13,7 +14,7 @@ import io.reactivex.Flowable;
  */
 
 public class HeroInfoModel extends BaseModel {
-    public Flowable<HeroSimpleInfo> getHeroInfo(LinkedHashMap<String,Object> map) {
+    public Flowable<HeroSimpleInfo> getHeroInfo(Map<String,Object> map) {
         return HeroInfoModel.create(HeroService.class).getHeroInfo(map);
     }
 }

@@ -14,7 +14,7 @@ import lombok.ToString;
 
 public
 @Data
-class HeroSimpleInfo {
+class HeroSimpleInfo implements Serializable{
 
     private ResultEntity result;
 

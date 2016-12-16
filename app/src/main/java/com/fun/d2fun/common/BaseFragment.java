@@ -12,8 +12,11 @@ import android.view.ViewGroup;
 
 import com.fun.d2fun.util.DialogUtil;
 import com.fun.d2fun.view.BaseView;
+import com.orhanobut.logger.Logger;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import butterknife.ButterKnife;
 
@@ -30,7 +33,7 @@ public abstract class BaseFragment<V extends BaseView, T extends BasePersenter<V
     //在基类中初始化Dialog
     public Dialog mLoading;
     private BaseActivity mBaseActivity;
-    public LinkedHashMap<String, Object> mParmMap = new LinkedHashMap<>();
+    public Map<String, Object> mParmMap = new HashMap<>();
 
 
     public BaseFragment() {
@@ -48,8 +51,6 @@ public abstract class BaseFragment<V extends BaseView, T extends BasePersenter<V
         context = getActivity();
         res = context.getResources();
         mAppApplication = AppApplication.getInstance();
-        /**从给定的context中获得LayoutInflater*/
-//        mInflater = LayoutInflater.from(getActivity());
         presenter = initPresenter();
         if (presenter != null) {
             presenter.attach((V) this);
@@ -77,7 +78,6 @@ public abstract class BaseFragment<V extends BaseView, T extends BasePersenter<V
         } else {
             mLayoutView = getCreateView(inflater, container);
             ButterKnife.bind(this, mLayoutView);
-            initView();     //初始化布局
         }
         return mLayoutView;
     }
@@ -100,15 +100,25 @@ public abstract class BaseFragment<V extends BaseView, T extends BasePersenter<V
         if (presenter != null) {
             presenter.dettach();
         }
+        mParmMap.clear();
 //        RefWatcher refWatcher = AppApplication.getRefWatcher(getActivity());
 //        refWatcher.watch(this);
     }
+
 
     public BaseActivity getBaseActivity() {
         if (mBaseActivity == null) {
             mBaseActivity = (BaseActivity) getActivity();
         }
         return mBaseActivity;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        if (isVisibleToUser && isVisible()) {
+            initView(); //加载数据的方法
+        }
+        super.setUserVisibleHint(isVisibleToUser);
     }
 
     @Override

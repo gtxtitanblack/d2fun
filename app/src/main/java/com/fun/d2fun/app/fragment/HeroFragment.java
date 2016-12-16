@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.fun.d2fun.R;
 import com.fun.d2fun.adapter.HeroInfoAdapter;
@@ -34,6 +35,9 @@ import butterknife.OnClick;
 public class HeroFragment extends BaseFragment<HeroInfoView, HeroInfoPersenter> implements HeroInfoView {
     @Bind(R.id.hero_recyclerview)
     PullLoadMoreRecyclerView mPullLoadMoreRecyclerView;
+    @Bind(R.id.hero_null_data)
+    TextView mTextView;
+
     private HeroInfoAdapter mHeroInfoAdapter;
     private List<HeroSimpleInfo.ResultEntity.HeroesEntity> mHeroesEntities;
 
@@ -43,6 +47,7 @@ public class HeroFragment extends BaseFragment<HeroInfoView, HeroInfoPersenter> 
         mLayoutView = inflater.inflate(R.layout.fragment_heroinfo, container, false);
         ButterKnife.bind(this, mLayoutView);
         return mLayoutView;
+
     }
 
     @Override
@@ -64,17 +69,24 @@ public class HeroFragment extends BaseFragment<HeroInfoView, HeroInfoPersenter> 
 
     @Override
     public void showLoading() {
-
+//        mLoading.show();
     }
 
     @Override
     public void hideLoading() {
-
+        mLoading.hide();
     }
 
     @Override
     public void showError(String error) {
-        Snackbar.make(getView(), error, Snackbar.LENGTH_LONG).show();
+
+    }
+
+    @OnClick(R.id.hero_recyclerview)
+    public void onClick(View view) {
+        ToastUtil.show(getContext(), "asd");
+        mTextView.setVisibility(View.GONE);
+        loadHeroData();
     }
 
 
@@ -82,16 +94,28 @@ public class HeroFragment extends BaseFragment<HeroInfoView, HeroInfoPersenter> 
     public void getHeroInfo(HeroSimpleInfo.ResultEntity resultEntity) {
         mHeroesEntities = new ArrayList<>();
         if (resultEntity != null) {
-            Logger.d(resultEntity);
             mHeroesEntities.addAll(resultEntity.getHeroes());
             mHeroInfoAdapter = new HeroInfoAdapter(getContext(), R.layout.item_heroinfo, mHeroesEntities);
             mPullLoadMoreRecyclerView.setAdapter(mHeroInfoAdapter);
+            mPullLoadMoreRecyclerView.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
+                @Override
+                public void onRefresh() {
+                    mHeroInfoAdapter.clearData();
+                    mHeroInfoAdapter.notifyDataSetChanged();
+                    loadHeroData();
+                }
+
+                @Override
+                public void onLoadMore() {
+                    loadHeroData();
+                }
+            });
         }
     }
 
     private void loadHeroData() {
         mParmMap.put("key", ConstantParms.steamKey);
         mParmMap.put("language", ConstantParms.parmLanguage);
-        presenter.getHeroSimpleInfo(mParmMap, mPullLoadMoreRecyclerView, getContext());
+        presenter.getHeroSimpleInfo(mParmMap, mPullLoadMoreRecyclerView, mTextView);
     }
 }

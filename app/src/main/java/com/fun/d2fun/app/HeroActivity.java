@@ -29,7 +29,7 @@ public class HeroActivity extends BaseActivity {
     }
 
     private void initTab() {
-        mViewPagerAdapter = new ViewPagerAdapter(this.getSupportFragmentManager(), this);
+        mViewPagerAdapter = new ViewPagerAdapter(getBaseFragmentManager(), this);
         mViewPager.setAdapter(mViewPagerAdapter);
         mTableLayout.setupWithViewPager(mViewPager);
         for (int i = 0; i < mTableLayout.getTabCount(); i++) {

@@ -1,5 +1,6 @@
 package com.fun.d2fun.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -10,26 +11,32 @@ import lombok.ToString;
 /**
  * Created by zx on 2016/3/3.
  */
+
+public
 @Data
 @ToString
 @AllArgsConstructor
-public class MatchListInfo {
+class MatchListInfo implements Serializable {
 
     private ResultEntity result;
 
+
+    public
     @Data
     @ToString
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class ResultEntity {
+    static class ResultEntity {
 
         private List<LeaguesEntity> leagues;
 
+
+        public
         @Data
         @ToString
         @AllArgsConstructor
         @NoArgsConstructor
-        public static class LeaguesEntity {
+        static class LeaguesEntity {
             private String name;
             private int leagueid;
             private String description;

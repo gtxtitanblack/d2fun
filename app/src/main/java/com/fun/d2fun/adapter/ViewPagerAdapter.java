@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.fun.d2fun.R;
 import com.fun.d2fun.app.fragment.HeroFragment;
+import com.orhanobut.logger.Logger;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -60,6 +62,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             case 4:
                 return new HeroFragment();
         }
+        Logger.d("fragmentPagerAdapter load position = " + position);
         return null;
     }
 

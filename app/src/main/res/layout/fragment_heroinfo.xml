@@ -4,12 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
         android:id="@+id/hero_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/button">
+        android:layout_below="@+id/button"/>
 
-    </com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView>
+    <TextView
+        android:id="@+id/hero_null_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:drawableLeft="@drawable/ic_sync_black_24dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="数据加载失败，点击重试"
+        android:visibility="gone"/>
 
 </com.zhy.autolayout.AutoRelativeLayout>
